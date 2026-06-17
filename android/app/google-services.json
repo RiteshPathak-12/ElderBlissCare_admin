@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "528225851763",
+    "project_id": "elderblisscare1",
+    "storage_bucket": "elderblisscare1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528225851763:android:56308d306029f1b19a4d06",
+        "android_client_info": {
+          "package_name": "com.elderblisscare.society"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACMApWHbeMhdoCZRszbfE0uYlnZ2vuS7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528225851763-6teqb7k11bkpbgm9jcsbe8tmv3k5io43.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.elderblisscare.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528225851763:android:657dac95d91022849a4d06",
+        "android_client_info": {
+          "package_name": "com.elderblisscare1.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACMApWHbeMhdoCZRszbfE0uYlnZ2vuS7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528225851763-6teqb7k11bkpbgm9jcsbe8tmv3k5io43.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.elderblisscare.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528225851763:android:53df40cc857664419a4d06",
+        "android_client_info": {
+          "package_name": "com.example.elderbliss_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACMApWHbeMhdoCZRszbfE0uYlnZ2vuS7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528225851763-6teqb7k11bkpbgm9jcsbe8tmv3k5io43.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.elderblisscare.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
