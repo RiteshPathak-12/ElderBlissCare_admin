@@ -10,7 +10,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- ✅ USE_FULL_SCREEN_INTENT for lock-screen notifications -->
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
-
+    <!-- ✅ Keeps the CPU awake while processing critical emergency notifications -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:label="elderbliss_admin"
         android:name="${applicationName}"

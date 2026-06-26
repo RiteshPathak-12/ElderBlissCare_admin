@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 class AlertModel {
   final String id;
   final String userId;
@@ -29,7 +30,12 @@ class AlertModel {
 
   factory AlertModel.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    
+
+    debugPrint("=========== RAW DATA ===========");
+    debugPrint(data.toString());
+    debugPrint("PHONE FIELD : ${data['phone']}");
+    debugPrint("USERPHONE FIELD : ${data['userPhone']}");
+  
     // Safely handle both naming conventions that might be used by the user app
     final createdAtRaw = data['createdAt'] ?? data['timestamp'];
     final mapsUrlRaw = data['mapsUrl'] ?? data['locationUrl'] ?? '';
@@ -38,7 +44,9 @@ class AlertModel {
       id: doc.id,
       userId: data['userId'] ?? '',
       userName: data['userName'] ?? 'Unknown User',
-      phone: data['phone'] ?? 'No Phone',
+      phone: data['phone'] ??
+       data['userPhone'] ??
+       'No Phone',
       latitude: (data['latitude'] as num?)?.toDouble(),
       longitude: (data['longitude'] as num?)?.toDouble(),
       mapsUrl: mapsUrlRaw,

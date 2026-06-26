@@ -11,19 +11,33 @@ class AlertService {
   Stream<List<AlertModel>> getActiveAlerts() {
     return _db
         .collection(collectionPath)
-        .where('status', isEqualTo: 'active')
+        .where('status', whereIn: ['active', 'triggered'])
         // Removing orderBy to prevent "missing field" exclusions or missing index issues.
         // If a document doesn't strictly have a 'createdAt' field (e.g. it was named 'timestamp'), 
         // Firestore orderBy automatically excludes it.
         .snapshots()
-        .map((snapshot) {
+        .map((snapshot) { 
           debugPrint("--- FIRESTORE REALTIME UPDATE ---");
           debugPrint("Active alerts snapshot docs count: ${snapshot.docs.length}");
           
           List<AlertModel> alerts = snapshot.docs
               .map((doc) => AlertModel.fromFirestore(doc))
               .toList();
-              
+          
+          for (final doc in snapshot.docs) {
+            debugPrint("------------------------------");
+            debugPrint("DOC ID : ${doc.id}");
+            debugPrint(doc.data().toString());
+          }
+          
+          for (final alert in alerts) {
+            debugPrint("============== MODEL ==============");
+            debugPrint("Name : ${alert.userName}");
+            debugPrint("Phone : ${alert.phone}");
+            debugPrint("Status : ${alert.status}");
+            debugPrint("Time : ${alert.createdAt}");
+            debugPrint("Map : ${alert.mapsUrl}");
+          }
           // Sort locally to ensure recent alerts are on top (decending order)
           alerts.sort((a, b) {
             final aTime = a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
@@ -49,7 +63,7 @@ class AlertService {
   Stream<int> getActiveAlertsCount() {
     return _db
         .collection(collectionPath)
-        .where('status', isEqualTo: 'active')
+        .where('status', whereIn: ['active', 'triggered'])
         .snapshots()
         .map((snapshot) {
           debugPrint("Active alerts count updated: ${snapshot.size}");
@@ -94,7 +108,7 @@ class AlertService {
     }
   }
 
-  // Call user
+  // Call user  
   Future<void> callUser(BuildContext context, String phone) async {
     if (phone.isEmpty) {
       if (context.mounted) {
