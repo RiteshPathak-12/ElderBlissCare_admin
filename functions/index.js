@@ -44,9 +44,9 @@ exports.sendPanicAlertNotification = onDocumentCreated(
     const userName = alertData.userName || "Unknown User";
     const status = alertData.status || "active";
 
-    // Only notify for active (new) alerts — ignore resolved ones
-    if (status !== "active") {
-      console.log(`Alert ${alertId} is not active (status: ${status}). Skipping.`);
+    // Support both ElderBliss app and Society app
+    if (status !== "active" && status !== "triggered") {
+      console.log(`Skipping alert with status: ${status}`);
       return null;
     }
 
@@ -79,9 +79,20 @@ exports.sendPanicAlertNotification = onDocumentCreated(
     console.log(`Sending notification to ${tokens.length} admin device(s).`);
 
     // ── Build the FCM message ──────────────────────────────────────────────
+      
+    // Phone number supports both ElderBliss App and Society App
+    const phone =
+      alertData.phone ||
+      alertData.userPhone ||
+      "Unknown";
+      
+    // Notification title
     const notificationTitle = "🚨 Emergency Alert";
-    const notificationBody = `${userName} has triggered a panic alert`;
-
+      
+    // Notification body
+    const notificationBody =
+      `${userName}\nPhone: ${phone}`;
+      
     // Send to each token individually (sendEachForMulticast handles batching)
     const multicastMessage = {
       tokens: tokens,
